@@ -13,11 +13,8 @@ export class RestaurantController {
 
   // Route to allow voting (you may need to adjust depending on your voting logic)
   @Post('vote')
-  async voteForRestaurant(
-    @Body('restaurantId') restaurantId: number,
-    employee: any,
-  ) {
-    return this.restaurantService.vote();
+  async castVote(@Body() body: { foodPackId: number; employee: string }) {
+    return this.restaurantService.castVote(body.foodPackId, body.employee);
   }
 
   // Route to get the daily winner
